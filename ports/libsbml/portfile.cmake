@@ -128,14 +128,22 @@ file(COPY ${CURRENT_BUILDTREES_DIR}/src/libSBML-5-0f436e5e49/LICENSE.txt DESTINA
 file(RENAME ${CURRENT_PACKAGES_DIR}/share/libsbml/LICENSE.txt ${CURRENT_PACKAGES_DIR}/share/libsbml/copyright)
 
 file(GLOB TXT_FILES ${CURRENT_PACKAGES_DIR}/debug/*.txt)
+if (TXT_FILES)
 file(REMOVE ${TXT_FILES})
+endif()
 file(GLOB TXT_FILES ${CURRENT_PACKAGES_DIR}/*.txt)
+if (TXT_FILES)
 file(REMOVE ${TXT_FILES})
+endif()
 
 file(GLOB CMAKE_FILES ${CURRENT_PACKAGES_DIR}/debug/lib/cmake/*-debug.cmake)
+if (CMAKE_FILES)
 file(COPY ${CMAKE_FILES} DESTINATION ${CURRENT_PACKAGES_DIR}/share/libsbml/cmake)
+endif()
 file(GLOB CMAKE_FILES ${CURRENT_PACKAGES_DIR}/lib/cmake/*.cmake)
+if (CMAKE_FILES)
 file(COPY ${CMAKE_FILES} DESTINATION ${CURRENT_PACKAGES_DIR}/share/libsbml/cmake)
+endif()
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/lib/cmake)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/lib/cmake)
 
