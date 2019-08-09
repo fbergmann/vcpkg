@@ -136,17 +136,25 @@ if (TXT_FILES)
 file(REMOVE ${TXT_FILES})
 endif()
 
+if (EXISTS ${CURRENT_PACKAGES_DIR}/debug/lib/cmake)
 file(GLOB CMAKE_FILES ${CURRENT_PACKAGES_DIR}/debug/lib/cmake/*-debug.cmake)
 if (CMAKE_FILES)
 file(COPY ${CMAKE_FILES} DESTINATION ${CURRENT_PACKAGES_DIR}/share/libsbml/cmake)
 endif()
+file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/lib/cmake)
+endif()
+
+if (EXISTS ${CURRENT_PACKAGES_DIR}/lib/cmake)
 file(GLOB CMAKE_FILES ${CURRENT_PACKAGES_DIR}/lib/cmake/*.cmake)
 if (CMAKE_FILES)
 file(COPY ${CMAKE_FILES} DESTINATION ${CURRENT_PACKAGES_DIR}/share/libsbml/cmake)
 endif()
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/lib/cmake)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/lib/cmake)
+endif()
 
+if (EXISTS ${CURRENT_PACKAGES_DIR}/debug/share)
+file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/share)
+endif()
 
 # Handle copyright
 # file(INSTALL ${SOURCE_PATH}/LICENSE DESTINATION ${CURRENT_PACKAGES_DIR}/share/libsbml RENAME copyright)
